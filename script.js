@@ -4,6 +4,125 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // ============================================
+// Resume & Portfolio document links (resume.html)
+// See RESUME_URL / PORTFOLIO_URL in projects-data.js
+// ============================================
+function driveDownloadUrl(viewUrl) {
+  if (!viewUrl) return '';
+  const match = viewUrl.match(/\/file\/d\/([^/]+)/);
+  if (match) return `https://drive.google.com/uc?export=download&id=${match[1]}`;
+  return viewUrl;
+}
+
+(function setDocumentLinks() {
+  const isPlaceholder = (url) => !url || url.startsWith('PASTE_YOUR_');
+
+  const cvView = document.getElementById('cvView');
+  const cvDownload = document.getElementById('cvDownload');
+  if (cvView && cvDownload && typeof RESUME_URL !== 'undefined' && !isPlaceholder(RESUME_URL)) {
+    cvView.href = RESUME_URL;
+    cvDownload.href = driveDownloadUrl(RESUME_URL);
+  }
+
+  const portfolioView = document.getElementById('portfolioView');
+  const portfolioDownload = document.getElementById('portfolioDownload');
+  if (portfolioView && portfolioDownload && typeof PORTFOLIO_URL !== 'undefined' && !isPlaceholder(PORTFOLIO_URL)) {
+    portfolioView.href = PORTFOLIO_URL;
+    portfolioDownload.href = driveDownloadUrl(PORTFOLIO_URL);
+  }
+})();
+
+// ============================================
+// Render Featured Projects
+// ============================================
+function renderFeaturedProjects() {
+  const grid = document.getElementById('featuredGrid');
+  if (!grid || typeof FEATURED_PROJECTS === 'undefined') return;
+
+  grid.innerHTML = FEATURED_PROJECTS.map(p => `
+    <article class="project-card">
+      <div class="project-card__top">
+        <h3>${p.title}</h3>
+        <span class="project-card__type">${p.type}</span>
+      </div>
+      <p class="project-card__desc">${p.shortDescription}</p>
+      <div class="project-card__actions">
+        <button class="case-study-btn" data-project="${p.id}">Case Study →</button>
+        ${p.links.github ? `<a href="${p.links.github}" target="_blank" rel="noopener">GitHub ↗</a>` : ''}
+        ${p.links.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener">Demo ↗</a>` : ''}
+      </div>
+    </article>
+  `).join('');
+
+  grid.querySelectorAll('.case-study-btn').forEach(btn => {
+    btn.addEventListener('click', () => openCaseStudy(btn.dataset.project));
+  });
+}
+
+// ============================================
+// Case Study Modal
+// ============================================
+const caseStudyModal = document.getElementById('caseStudyModal');
+const modalContent = document.getElementById('modalContent');
+const modalClose = document.getElementById('modalClose');
+
+function section(title, bodyHtml) {
+  return `<div class="modal-section"><h4>${title}</h4>${bodyHtml}</div>`;
+}
+
+function openCaseStudy(id) {
+  const p = FEATURED_PROJECTS.find(proj => proj.id === id);
+  if (!p) return;
+
+  let html = `
+    <p class="modal-meta">${p.type} · ${p.date}</p>
+    <h3 class="modal-title" id="modalTitle">${p.title}</h3>
+    <p class="modal-sub">${p.shortDescription}</p>
+  `;
+
+  html += section('Overview', `<p>${p.overview}</p>`);
+
+  if (p.problem) html += section('Problem', `<p>${p.problem}</p>`);
+  if (p.approach) html += section('Approach', `<p>${p.approach}</p>`);
+
+  if (p.architecture && p.architecture.length) {
+    html += `<div class="modal-section modal-section--arch"><h4>Architecture</h4><ol>${p.architecture.map(step => `<li>${step}</li>`).join('')}</ol></div>`;
+  }
+
+  if (p.keyFeatures && p.keyFeatures.length) {
+    html += section('Key Features', `<ul>${p.keyFeatures.map(f => `<li>${f}</li>`).join('')}</ul>`);
+  }
+
+  if (p.technicalImplementation) html += section('Technical Implementation', `<p>${p.technicalImplementation}</p>`);
+  if (p.challenges) html += section('Challenges', `<p>${p.challenges}</p>`);
+  if (p.results) html += section('Results', `<p class="modal-result">${p.results}</p>`);
+
+  html += section('Tech Stack', `<div class="tags">${p.techStack.map(t => `<span class="tag">${t}</span>`).join('')}</div>`);
+
+  const links = [];
+  if (p.links.github) links.push(`<a href="${p.links.github}" target="_blank" rel="noopener" class="btn btn--ghost">GitHub ↗</a>`);
+  if (p.links.demo) links.push(`<a href="${p.links.demo}" target="_blank" rel="noopener" class="btn btn--ghost">Demo ↗</a>`);
+  if (p.links.publication) links.push(`<a href="${p.links.publication}" target="_blank" rel="noopener" class="btn btn--ghost">Publication ↗</a>`);
+  if (links.length) html += section('Links', `<div class="modal-links">${links.join('')}</div>`);
+
+  modalContent.innerHTML = html;
+  caseStudyModal.showModal();
+}
+
+if (modalClose) {
+  modalClose.addEventListener('click', () => caseStudyModal.close());
+}
+if (caseStudyModal) {
+  caseStudyModal.addEventListener('click', (e) => {
+    const rect = caseStudyModal.getBoundingClientRect();
+    const inDialog = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
+    if (!inDialog) caseStudyModal.close();
+  });
+}
+
+renderFeaturedProjects();
+
+// ============================================
 // Nav scroll state + active link
 // ============================================
 const nav = document.getElementById('nav');

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume | Naufal Putra Sutrisna</title>
+<meta name="description" content="View or download Naufal Putra Sutrisna's CV and project portfolio PDF.">
+<meta name="theme-color" content="#0b1f3d">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="index.html#home" class="nav__logo">Naufal Sutrisna<span class="dot">.</span></a>
+  <nav class="nav__links" id="navLinks" aria-label="Primary">
+    <a href="index.html#about">About</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="resume.html" class="active">Resume</a>
+  </nav>
+  <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main>
+  <section class="section section--first" id="resume-docs" aria-labelledby="resume-heading">
+    <div class="section__head reveal">
+      <p class="eyebrow">Resume</p>
+      <h1 id="resume-heading">CV &amp; Portfolio</h1>
+      <p class="section__intro">
+        My CV covers detailed professional history. My portfolio covers in-depth project case studies.
+        The website itself is the fastest way to browse my work.
+      </p>
+    </div>
+
+    <div class="featured-grid reveal">
+      <article class="project-card">
+        <div class="project-card__top">
+          <h3>CV</h3>
+        </div>
+        <p class="project-card__desc">Full professional history: experience, education, skills, and certifications.</p>
+        <div class="project-card__actions">
+          <a href="#" id="cvView" target="_blank" rel="noopener">View CV ↗</a>
+          <a href="#" id="cvDownload" download>Download CV ↓</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-card__top">
+          <h3>Portfolio</h3>
+        </div>
+        <p class="project-card__desc">In-depth case studies for my strongest AI/ML projects, including approach and results.</p>
+        <div class="project-card__actions">
+          <a href="#" id="portfolioView" target="_blank" rel="noopener">View Portfolio ↗</a>
+          <a href="#" id="portfolioDownload" download>Download Portfolio ↓</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__row">
+    <p>© <span id="year"></span> Naufal Putra Sutrisna</p>
+    <div class="footer__contact">
+      <a href="mailto:naufptrs@gmail.com">Email</a>
+      <span>·</span>
+      <a href="https://linkedin.com/in/naufalsutrisna" target="_blank" rel="noopener">LinkedIn</a>
+      <span>·</span>
+      <a href="https://github.com/naufalsutrisna" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+</footer>
+
+<script src="projects-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -3,8 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Naufal Putra Sutrisna — AI/ML Engineer</title>
-<meta name="description" content="Naufal Putra Sutrisna — AI/ML Engineer & Data Science enthusiast. Portfolio, experience, and projects.">
+<title>Naufal Putra Sutrisna | AI/ML Engineer</title>
+<meta name="description" content="Portfolio of Naufal Putra Sutrisna, an AI/ML Engineer specializing in LLM applications, RAG, computer vision, and MLOps. Featured projects and experience.">
+<meta name="theme-color" content="#0b1f3d">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Naufal Putra Sutrisna | AI/ML Engineer">
+<meta property="og:description" content="AI/ML Engineer specializing in LLM applications, RAG, computer vision, and MLOps. Explore featured projects and experience.">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Naufal Putra Sutrisna | AI/ML Engineer">
+<meta name="twitter:description" content="AI/ML Engineer specializing in LLM applications, RAG, computer vision, and MLOps.">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,23 +24,18 @@
 </head>
 <body>
 
-<div class="grain"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <!-- NAV -->
 <header class="nav" id="nav">
   <a href="#home" class="nav__logo">Naufal Sutrisna<span class="dot">.</span></a>
-  <nav class="nav__links" id="navLinks">
+  <nav class="nav__links" id="navLinks" aria-label="Primary">
     <a href="#about">About</a>
-    <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#honors">Honors</a>
-    <a href="#certification">Certs</a>
-    <a href="#publication">Publications</a>
-    <a href="#contact">Contact</a>
+    <a href="resume.html">Resume</a>
   </nav>
-  <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+  <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
 </header>
@@ -39,173 +46,138 @@
   <section class="hero" id="home">
     <div class="hero__net" id="heroNet" aria-hidden="true"></div>
     <div class="hero__inner">
-      <p class="eyebrow">AI / ML Engineer — Gresik, Indonesia</p>
-      <h1 class="hero__title">
-        Naufal Putra<br>Sutrisna
-      </h1>
+      <p class="eyebrow">AI/ML Engineer · Gresik, Indonesia</p>
+      <h1 class="hero__title">Naufal Putra<br>Sutrisna</h1>
       <p class="hero__subtitle">
-        I build systems that turn language, data, and models into things people can actually use —
-        from LLM agents and RAG pipelines to MLOps that keeps them running.
+        I build systems that turn language, data, and models into things people can actually use,
+        from LLM agents and RAG pipelines to the MLOps that keeps them running in production.
       </p>
       <div class="hero__actions">
-        <a href="mailto:naufptrs@gmail.com" class="btn btn--primary">Say hello</a>
-        <a href="https://github.com/naufalsutrisna" target="_blank" rel="noopener" class="btn btn--ghost">GitHub ↗</a>
-        <a href="https://linkedin.com/in/naufalsutrisna" target="_blank" rel="noopener" class="btn btn--ghost">LinkedIn ↗</a>
+        <a href="#projects" class="btn btn--primary">View Projects</a>
+        <a href="resume.html" class="btn btn--ghost">Resume</a>
+      </div>
+      <div class="hero__socials">
+        <a href="https://github.com/naufalsutrisna" target="_blank" rel="noopener">GitHub</a>
+        <span>·</span>
+        <a href="https://linkedin.com/in/naufalsutrisna" target="_blank" rel="noopener">LinkedIn</a>
+        <span>·</span>
+        <a href="mailto:naufptrs@gmail.com">Email</a>
       </div>
     </div>
     <div class="hero__scroll" aria-hidden="true"><span></span>Scroll</div>
   </section>
 
   <!-- ABOUT -->
-  <section class="section" id="about">
+  <section class="section" id="about" aria-labelledby="about-heading">
     <div class="section__head reveal">
       <p class="eyebrow">About</p>
-      <h2>Who I am</h2>
+      <h2 id="about-heading">About</h2>
     </div>
+
     <div class="about__grid reveal">
       <p class="about__text">
-        AI/ML Engineer with a background in Informatics Engineering from Universitas Brawijaya, specializing
-        in Artificial Intelligence, Machine Learning, and Data Science. I've built AI-powered applications,
-        predictive models, computer vision systems, and MLOps pipelines — covering the full path from data
-        processing and model development to deployment and monitoring.
+        AI/ML Engineer with a background in Informatics Engineering from Universitas Brawijaya.
+        Specializing in LLM-powered applications, machine learning, computer vision, and MLOps,
+        with a focus on building reliable AI systems that work with real-world data.
       </p>
-      <p class="about__text">
-        Most recently I worked as an AI/ML Junior Engineer at OpsNow, contributing to cloud cost optimization
-        and AI-driven solutions. Before that, I gained hands-on experience through a Machine Learning
-        internship at Bukit Vista, academic research publications, and a range of independent AI and ML
-        projects. I'm driven by continuous learning and by applying data and AI to solve real problems.
-      </p>
-      <div class="about__facts">
-        <div class="fact">
-          <span class="fact__num">3.94</span>
-          <span class="fact__label">GPA, Cum Laude</span>
-        </div>
-        <div class="fact">
-          <span class="fact__num">10+</span>
-          <span class="fact__label">AI / ML projects shipped</span>
-        </div>
-        <div class="fact">
-          <span class="fact__num">2</span>
-          <span class="fact__label">Published research papers</span>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- SKILLS -->
-  <section class="section section--alt" id="skills">
-    <div class="section__head reveal">
-      <p class="eyebrow">Skills</p>
-      <h2>What I work with</h2>
+    <div class="about-block reveal">
+      <h3>Core Skills</h3>
+      <div class="skills">
+        <div class="skill-group">
+          <h4>AI / ML</h4>
+          <div class="tags">
+            <span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">NLP</span>
+            <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
+            <span class="tag">Computer Vision</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Frameworks &amp; Tools</h4>
+          <div class="tags">
+            <span class="tag">MCP</span><span class="tag">LangChain</span><span class="tag">LangSmith</span>
+            <span class="tag">TensorFlow</span><span class="tag">PyTorch</span><span class="tag">Transformers</span>
+            <span class="tag">Scikit-learn</span><span class="tag">FastAPI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Engineering / MLOps</h4>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Docker</span>
+            <span class="tag">MLflow</span><span class="tag">Apache Airflow</span><span class="tag">GitHub Actions</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="skills reveal">
-      <div class="skill-group">
-        <h3>Programming Languages</h3>
-        <div class="tags">
-          <span class="tag">Python</span><span class="tag">R</span><span class="tag">SQL</span>
+
+    <div class="about-block reveal">
+      <h3>Education</h3>
+      <div class="timeline timeline--compact">
+        <div class="timeline__item">
+          <div class="timeline__content">
+            <h4>Bachelor of Informatics Engineering</h4>
+            <p class="timeline__org">Universitas Brawijaya <span class="timeline__org-date">· 2021 - 2025</span></p>
+            <p class="timeline__note">GPA 3.94/4.00 · Cum Laude</p>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__content">
+            <h4>Machine Learning Learning Path</h4>
+            <p class="timeline__org">Bangkit Academy <span class="timeline__org-date">· 2024</span></p>
+            <p class="timeline__note">Graduated with Distinction · Top 10%</p>
+          </div>
         </div>
       </div>
-      <div class="skill-group">
-        <h3>Machine Learning & AI</h3>
-        <div class="tags">
-          <span class="tag">LLMs</span><span class="tag">SLMs</span><span class="tag">RAG</span>
-          <span class="tag">Prompt Engineering</span><span class="tag">NLP</span>
-          <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Frameworks & Libraries</h3>
-        <div class="tags">
-          <span class="tag">LangChain</span><span class="tag">MCP</span><span class="tag">TensorFlow</span>
-          <span class="tag">PyTorch</span><span class="tag">Scikit-Learn</span><span class="tag">FAISS</span>
-          <span class="tag">Transformers</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>LLMOps & MLOps</h3>
-        <div class="tags">
-          <span class="tag">LangSmith</span><span class="tag">MLflow</span><span class="tag">Apache Airflow</span>
-          <span class="tag">Docker</span><span class="tag">GitHub Actions</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Deployment & APIs</h3>
-        <div class="tags">
-          <span class="tag">FastAPI</span><span class="tag">Flask</span><span class="tag">Streamlit</span><span class="tag">Postman</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Databases & Data Warehouses</h3>
-        <div class="tags">
-          <span class="tag">MySQL</span><span class="tag">BigQuery</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Data Analysis & Visualization</h3>
-        <div class="tags">
-          <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Tableau</span><span class="tag">Grafana</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Data Collection</h3>
-        <div class="tags">
-          <span class="tag">HTTP Requests</span><span class="tag">BeautifulSoup</span><span class="tag">Selenium</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Tools</h3>
-        <div class="tags">
-          <span class="tag">Git</span><span class="tag">Jira</span><span class="tag">Confluence</span>
-        </div>
-      </div>
+    </div>
+
+    <div class="about-block reveal">
+      <h3>Publications</h3>
+      <ul class="line-list">
+        <li>
+          <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/14719" target="_blank" rel="noopener">Alzheimer's Disease Classification on MRI Images Using VGG-19 and CLAHE ↗</a>
+          <span class="line-list__meta">JPTIIK</span>
+        </li>
+        <li>
+          <a href="https://jtiik.ub.ac.id/index.php/jtiik/article/view/8119" target="_blank" rel="noopener">Detection of Papaya Fruit Ripeness Using a CNN Model ↗</a>
+          <span class="line-list__meta">JTIIK</span>
+        </li>
+      </ul>
     </div>
   </section>
 
   <!-- EXPERIENCE -->
-  <section class="section" id="experience">
+  <section class="section section--alt" id="experience" aria-labelledby="experience-heading">
     <div class="section__head reveal">
       <p class="eyebrow">Experience</p>
-      <h2>Where I've worked</h2>
+      <h2 id="experience-heading">Experience</h2>
     </div>
     <div class="timeline reveal">
 
       <div class="timeline__item">
-        <div class="timeline__date">Jul 2025 — Dec 2025</div>
+        <div class="timeline__date">Jul 2025 - Dec 2025</div>
         <div class="timeline__content">
           <h3>AI/ML Junior Engineer</h3>
           <p class="timeline__org">OpsNow · Jakarta, Indonesia</p>
-          <ul>
-            <li>Built an Azure Savings Plan recommendation system, achieving 10–30% infrastructure cost savings.</li>
-            <li>Automated Azure Reserved Instance monitoring to surface underutilized resources.</li>
-            <li>Enhanced an LLM-powered business reporting chatbot with prompt engineering and SQL-based retrieval.</li>
-            <li>Evaluated Small Language Model alternatives to reduce LLM API costs.</li>
-            <li>Shaped cloud cost strategy for an AWS-to-GCP migration and on-premise AI workload optimization.</li>
-          </ul>
+          <p class="timeline__blurb">Worked on cloud cost optimization and AI-driven solutions, including an Azure cost recommendation system, automated savings monitoring, and an LLM-powered business reporting chatbot.</p>
         </div>
       </div>
 
       <div class="timeline__item">
-        <div class="timeline__date">Apr 2024 — Jul 2024</div>
+        <div class="timeline__date">Apr 2024 - Jul 2024</div>
         <div class="timeline__content">
           <h3>Machine Learning Engineer Intern</h3>
           <p class="timeline__org">Bukit Vista · Bali, Indonesia</p>
-          <ul>
-            <li>Led development of a machine learning-based dynamic pricing solution for accommodation rates.</li>
-            <li>Extracted, cleaned, and preprocessed internal data for model development and evaluation.</li>
-            <li>Designed models translating business requirements into data-driven pricing strategies.</li>
-          </ul>
+          <p class="timeline__blurb">Led development of a dynamic room-pricing model for a hospitality platform, covering data preparation, model development, evaluation, and deployment.</p>
         </div>
       </div>
 
       <div class="timeline__item">
-        <div class="timeline__date">Sep 2023 — Dec 2023</div>
+        <div class="timeline__date">Sep 2023 - Dec 2023</div>
         <div class="timeline__content">
           <h3>Laboratory Teaching Assistant of Databases</h3>
           <p class="timeline__org">Brawijaya University · Malang, Indonesia</p>
-          <ul>
-            <li>Taught 40+ students database fundamentals — ER Models, ERD, normalization, intermediate SQL.</li>
-            <li>Supervised practicum sessions and evaluated practical assignments.</li>
-          </ul>
+          <p class="timeline__blurb">Assisted undergraduate database practicum sessions, covering relational database design, SQL, and fundamental database concepts.</p>
         </div>
       </div>
 
@@ -213,272 +185,44 @@
   </section>
 
   <!-- PROJECTS -->
-  <section class="section section--alt" id="projects">
+  <section class="section" id="projects" aria-labelledby="projects-heading">
     <div class="section__head reveal">
-      <p class="eyebrow">Project Experience</p>
-      <h2>Things I've built</h2>
+      <p class="eyebrow">Projects</p>
+      <h2 id="projects-heading">Selected work</h2>
     </div>
-    <div class="projects reveal">
 
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>E-Commerce Data Analyst Agent</h3>
-          <span class="project-card__type">Individual</span>
-        </div>
-        <p class="project-card__date">May 2026 — Jun 2026</p>
-        <p>AI agent that turns natural-language business questions into SQL, then returns executive summaries and insights.</p>
-        <div class="tags tags--small">
-          <span class="tag">Python</span><span class="tag">LangChain</span><span class="tag">DuckDB</span><span class="tag">Streamlit</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/ecommerce-data-analyst-agent" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>Voice Assistant</h3>
-          <span class="project-card__type">Individual</span>
-        </div>
-        <p class="project-card__date">Feb 2026 — Apr 2026</p>
-        <p>Real-time hands-free voice assistant combining speech-to-text, an LLM, and text-to-speech.</p>
-        <div class="tags tags--small">
-          <span class="tag">Python</span><span class="tag">Faster-Whisper</span><span class="tag">pyttsx3</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/voice-assistant" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>AI-Powered Shopping Assistant Chatbot</h3>
-          <span class="project-card__type">Individual</span>
-        </div>
-        <p class="project-card__date">Feb 2025 — Apr 2025</p>
-        <p>Conversational product discovery assistant using retrieval-augmented generation over product data.</p>
-        <div class="tags tags--small">
-          <span class="tag">Sentence-Transformers</span><span class="tag">FAISS</span><span class="tag">Streamlit</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/Shopping-Assistant-Chatbot" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>MLOps Project — Heart Attack Detection</h3>
-          <span class="project-card__type">Team</span>
-        </div>
-        <p class="project-card__date">Oct 2024 — Dec 2024</p>
-        <p>End-to-end MLOps pipeline for training, deployment, and monitoring with experiment tracking.</p>
-        <div class="tags tags--small">
-          <span class="tag">Docker</span><span class="tag">MLflow</span><span class="tag">Grafana</span><span class="tag">PostgreSQL</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/MLOps-Heart-Attack-Detection" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>Alzheimer Disease Classification</h3>
-          <span class="project-card__type">Individual</span>
-        </div>
-        <p class="project-card__date">Aug 2024 — Dec 2024</p>
-        <p>Deep learning model for Alzheimer's classification on MRI scans — 93.91% F1-score, published research.</p>
-        <div class="tags tags--small">
-          <span class="tag">TensorFlow</span><span class="tag">VGG-19</span><span class="tag">CLAHE</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/Alzheimer-Disease-Classification" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>Abstract Similarity Chatbot</h3>
-          <span class="project-card__type">Team</span>
-        </div>
-        <p class="project-card__date">Oct 2024 — Dec 2024</p>
-        <p>Helps researchers find semantically related papers through TF-IDF and cosine similarity search.</p>
-        <div class="tags tags--small">
-          <span class="tag">FastAPI</span><span class="tag">Scikit-learn</span><span class="tag">TF-IDF</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/Abstract-Similarity-Chatbot" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>Dynamic Room Pricing</h3>
-          <span class="project-card__type">Team</span>
-        </div>
-        <p class="project-card__date">May 2024 — Jun 2024</p>
-        <p>Revenue-optimizing room pricing model for hospitality — MAE of 59K, beating the 100K target.</p>
-        <div class="tags tags--small">
-          <span class="tag">XGBoost</span><span class="tag">TensorFlow</span><span class="tag">FastAPI</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/Room-Pricing-Bukit-Vista" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>Bike Sharing Analysis</h3>
-          <span class="project-card__type">Individual</span>
-        </div>
-        <p class="project-card__date">Feb 2024 — Mar 2024</p>
-        <p>Interactive dashboard exploring rental patterns and demand drivers in Washington D.C.</p>
-        <div class="tags tags--small">
-          <span class="tag">Pandas</span><span class="tag">Streamlit</span><span class="tag">Seaborn</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/Bike-Sharing-Analysis" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>Papaya Ripeness Detection</h3>
-          <span class="project-card__type">Team</span>
-        </div>
-        <p class="project-card__date">Sep 2023 — Dec 2023</p>
-        <p>CNN-based fruit ripeness classifier reaching 96.63% accuracy, published research.</p>
-        <div class="tags tags--small">
-          <span class="tag">TensorFlow</span><span class="tag">CNN</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/Papaya-Ripeness-Detection-Using-CNN" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-      <article class="project-card">
-        <div class="project-card__top">
-          <h3>Grade Prediction</h3>
-          <span class="project-card__type">Team</span>
-        </div>
-        <p class="project-card__date">Sep 2023 — Dec 2023</p>
-        <p>Predicts academic performance from Empatica E4 wearable electrodermal activity signals.</p>
-        <div class="tags tags--small">
-          <span class="tag">Flask</span><span class="tag">Pandas</span><span class="tag">Feature Engineering</span>
-        </div>
-        <a href="https://github.com/naufalsutrisna/Grade-Prediction-Using-Empatica-E4" target="_blank" rel="noopener">View on GitHub ↗</a>
-      </article>
-
-    </div>
-    <p class="projects__more reveal">For more projects, visit my <a href="https://github.com/naufalsutrisna" target="_blank" rel="noopener">GitHub ↗</a></p>
-  </section>
-
-  <!-- EDUCATION -->
-  <section class="section" id="education">
-    <div class="section__head reveal">
-      <p class="eyebrow">Education</p>
-      <h2>Academic background</h2>
-    </div>
-    <div class="timeline reveal">
-
-      <div class="timeline__item">
-        <div class="timeline__date">Aug 2021 — Jan 2025</div>
-        <div class="timeline__content">
-          <h3>Bachelor of Informatics Engineering</h3>
-          <p class="timeline__org">Universitas Brawijaya · Malang, Indonesia</p>
-          <ul>
-            <li>GPA 3.94 / 4.00 — graduated with Cum Laude distinction in 3 years 4 months.</li>
-            <li>Coursework: Machine Learning, Artificial Neural Networks, Data Science, Data Engineering, Data Structures & Algorithms, Database, Software Engineering.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="timeline__item">
-        <div class="timeline__date">Feb 2024 — Jun 2024</div>
-        <div class="timeline__content">
-          <h3>Machine Learning Learning Path</h3>
-          <p class="timeline__org">Bangkit Academy 2024 by Google, GoTo, Traveloka · Bandung, Indonesia</p>
-          <ul>
-            <li>Graduated with Distinction — top 10% of learners in the Machine Learning path.</li>
-            <li>Completed 33 courses and certifications across Coursera and Dicoding.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- HONORS & AWARDS -->
-  <section class="section section--alt" id="honors">
-    <div class="section__head reveal">
-      <p class="eyebrow">Honors & Awards</p>
-      <h2>Recognition</h2>
-    </div>
-    <div class="timeline reveal">
-      <div class="timeline__item">
-        <div class="timeline__date">Apr 2022 — Dec 2022</div>
-        <div class="timeline__content">
-          <h3>Program Mahasiswa Wirausaha (PMW) 2022</h3>
-          <p class="timeline__org">Universitas Brawijaya — CEKI, Ceker Crispy Tanpa Tulang dengan Saus Topokki</p>
-          <ul>
-            <li>Selected through a competitive process, awarded IDR 3 million in student entrepreneurship funding.</li>
-            <li>Led the project from planning through implementation as a student-run food business.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATION -->
-  <section class="section" id="certification">
-    <div class="section__head reveal">
-      <p class="eyebrow">Certification</p>
-      <h2>Certifications</h2>
-    </div>
-    <ul class="cert-list reveal">
-      <li><span>Dev Certified for Machine Learning with TensorFlow</span><span class="cert-date">dev.id · Feb 2025</span></li>
-      <li><span>TensorFlow: Advanced Techniques Specialization</span><span class="cert-date">Coursera · May 2024</span></li>
-      <li><span>TensorFlow: Data and Deployment Specialization</span><span class="cert-date">Coursera · May 2024</span></li>
-      <li><span>DeepLearning.AI TensorFlow Developer Specialization</span><span class="cert-date">Coursera · Apr 2024</span></li>
-    </ul>
-    <p class="reveal">For a complete list, visit my <a href="https://linkedin.com/in/naufalsutrisna" target="_blank" rel="noopener">LinkedIn ↗</a></p>
-  </section>
-
-  <!-- PUBLICATION -->
-  <section class="section section--alt" id="publication">
-    <div class="section__head reveal">
-      <p class="eyebrow">Publication</p>
-      <h2>Research</h2>
-    </div>
-    <ul class="pub-list reveal">
-      <li>
-        <h3>Alzheimer's Disease Classification on MRI Images Using Pretrained VGG-19 and CLAHE Image Processing</h3>
-        <p class="pub-meta">Jurnal Pengembangan Teknologi Informasi dan Ilmu Komputer (JPTIIK) · Jan 2025</p>
-        <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/14719" target="_blank" rel="noopener">Read the paper ↗</a>
-      </li>
-      <li>
-        <h3>Detection of Papaya Fruit Ripeness Using Convolutional Neural Network Model</h3>
-        <p class="pub-meta">Jurnal Teknologi Informasi dan Ilmu Komputer (JTIIK) · Jul 2024</p>
-        <a href="https://jtiik.ub.ac.id/index.php/jtiik/article/view/8119" target="_blank" rel="noopener">Read the paper ↗</a>
-      </li>
-    </ul>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section contact" id="contact">
-    <div class="reveal">
-      <p class="eyebrow">Contact</p>
-      <h2 class="contact__title">Let's connect</h2>
-      <p class="contact__text">Feel free to reach out if you have any questions, opportunities, or ideas to build together.</p>
-      <div class="contact__grid">
-        <a href="mailto:naufptrs@gmail.com" class="contact__item">
-          <span class="contact__label">Email</span>
-          <span class="contact__value">naufptrs@gmail.com</span>
-        </a>
-        <a href="tel:+6282136802957" class="contact__item">
-          <span class="contact__label">Mobile</span>
-          <span class="contact__value">+62 821 3680 2957</span>
-        </a>
-        <a href="https://linkedin.com/in/naufalsutrisna" target="_blank" rel="noopener" class="contact__item">
-          <span class="contact__label">LinkedIn</span>
-          <span class="contact__value">linkedin.com/in/naufalsutrisna</span>
-        </a>
-        <a href="https://github.com/naufalsutrisna" target="_blank" rel="noopener" class="contact__item">
-          <span class="contact__label">GitHub</span>
-          <span class="contact__value">github.com/naufalsutrisna</span>
-        </a>
-      </div>
+    <div class="featured-grid reveal" id="featuredGrid">
+      <!-- populated by script.js from FEATURED_PROJECTS -->
     </div>
   </section>
 
 </main>
 
 <footer class="footer">
-  <p>© <span id="year"></span> Naufal Putra Sutrisna.</p>
+  <div class="footer__row">
+    <p>© <span id="year"></span> Naufal Putra Sutrisna</p>
+    <div class="footer__contact">
+      <a href="mailto:naufptrs@gmail.com">Email</a>
+      <span>·</span>
+      <a href="https://linkedin.com/in/naufalsutrisna" target="_blank" rel="noopener">LinkedIn</a>
+      <span>·</span>
+      <a href="https://github.com/naufalsutrisna" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
   <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 </footer>
 
+<!-- CASE STUDY MODAL -->
+<dialog class="modal" id="caseStudyModal" aria-labelledby="modalTitle">
+  <div class="modal__inner">
+    <button class="modal__close" id="modalClose" aria-label="Close case study">✕</button>
+    <div id="modalContent">
+      <!-- populated by script.js -->
+    </div>
+  </div>
+</dialog>
+
+<script src="projects-data.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
