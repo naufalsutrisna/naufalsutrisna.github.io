@@ -7,28 +7,27 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Resume & Portfolio document links (resume.html)
 // See RESUME_URL / PORTFOLIO_URL in projects-data.js
 // ============================================
-function driveDownloadUrl(viewUrl) {
-  if (!viewUrl) return '';
-  const match = viewUrl.match(/\/file\/d\/([^/]+)/);
-  if (match) return `https://drive.google.com/uc?export=download&id=${match[1]}`;
-  return viewUrl;
-}
-
 (function setDocumentLinks() {
   const isPlaceholder = (url) => !url || url.startsWith('PASTE_YOUR_');
 
   const cvView = document.getElementById('cvView');
-  const cvDownload = document.getElementById('cvDownload');
-  if (cvView && cvDownload && typeof RESUME_URL !== 'undefined' && !isPlaceholder(RESUME_URL)) {
+
+  if (
+    cvView &&
+    typeof RESUME_URL !== 'undefined' &&
+    !isPlaceholder(RESUME_URL)
+  ) {
     cvView.href = RESUME_URL;
-    cvDownload.href = driveDownloadUrl(RESUME_URL);
   }
 
   const portfolioView = document.getElementById('portfolioView');
-  const portfolioDownload = document.getElementById('portfolioDownload');
-  if (portfolioView && portfolioDownload && typeof PORTFOLIO_URL !== 'undefined' && !isPlaceholder(PORTFOLIO_URL)) {
+
+  if (
+    portfolioView &&
+    typeof PORTFOLIO_URL !== 'undefined' &&
+    !isPlaceholder(PORTFOLIO_URL)
+  ) {
     portfolioView.href = PORTFOLIO_URL;
-    portfolioDownload.href = driveDownloadUrl(PORTFOLIO_URL);
   }
 })();
 
