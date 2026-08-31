@@ -8,7 +8,7 @@
  * derived automatically from it (see driveDownloadUrl in script.js).
  * ---------------------------------------------------------
  */
-const RESUME_URL = "PASTE_YOUR_GOOGLE_DRIVE_CV_LINK_HERE";
+const RESUME_URL = "https://drive.google.com/drive/folders/1Bxk1rD9UgqiMxLXPP1_EdBFnv7wupz6F?usp=sharing";
 const PORTFOLIO_URL = "https://drive.google.com/drive/folders/15vjme4nQXJccRmWjtB4EdARrkdYv58s1?usp=sharing";
 
 /**
