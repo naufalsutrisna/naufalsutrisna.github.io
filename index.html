@@ -21,6 +21,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script>
+  (function() {
+    var saved = localStorage.getItem('theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
 </head>
 <body>
 
@@ -35,6 +42,10 @@
     <a href="#projects">Projects</a>
     <a href="resume.html">Resume</a>
   </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+    <span class="theme-toggle__icon theme-toggle__icon--sun">☀</span>
+    <span class="theme-toggle__icon theme-toggle__icon--moon">☾</span>
+  </button>
   <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
@@ -111,39 +122,6 @@
       </div>
     </div>
 
-    <div class="about-block reveal">
-      <h3>Education</h3>
-      <div class="timeline timeline--compact">
-        <div class="timeline__item">
-          <div class="timeline__content">
-            <h4>Bachelor of Informatics Engineering</h4>
-            <p class="timeline__org">Universitas Brawijaya <span class="timeline__org-date">· 2021 - 2025</span></p>
-            <p class="timeline__note">GPA 3.94/4.00 · Cum Laude</p>
-          </div>
-        </div>
-        <div class="timeline__item">
-          <div class="timeline__content">
-            <h4>Machine Learning Learning Path</h4>
-            <p class="timeline__org">Bangkit Academy <span class="timeline__org-date">· 2024</span></p>
-            <p class="timeline__note">Graduated with Distinction · Top 10%</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="about-block reveal">
-      <h3>Publications</h3>
-      <ul class="line-list">
-        <li>
-          <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/14719" target="_blank" rel="noopener">Alzheimer's Disease Classification on MRI Images Using VGG-19 and CLAHE ↗</a>
-          <span class="line-list__meta">JPTIIK</span>
-        </li>
-        <li>
-          <a href="https://jtiik.ub.ac.id/index.php/jtiik/article/view/8119" target="_blank" rel="noopener">Detection of Papaya Fruit Ripeness Using a CNN Model ↗</a>
-          <span class="line-list__meta">JTIIK</span>
-        </li>
-      </ul>
-    </div>
   </section>
 
   <!-- EXPERIENCE -->

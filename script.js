@@ -4,6 +4,21 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // ============================================
+// Dark mode toggle
+// ============================================
+(function themeToggle() {
+  const toggle = document.getElementById('themeToggle');
+  if (!toggle) return;
+
+  toggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+})();
+
+// ============================================
 // Resume & Portfolio document links (resume.html)
 // See RESUME_URL / PORTFOLIO_URL in projects-data.js
 // ============================================
