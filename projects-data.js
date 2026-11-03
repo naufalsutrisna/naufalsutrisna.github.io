@@ -26,9 +26,62 @@ const PORTFOLIO_URL = "https://drive.google.com/drive/folders/15vjme4nQXJccRmWjt
 
 const FEATURED_PROJECTS = [
   {
+    id: "customer-support-agent",
+    title: "Agentic Customer Support System",
+    date: "Sep 2026 - Nov 2026",
+    type: "Individual",
+    shortDescription: "An AI-powered customer support agent that handles customer inquiries, retrieves e-commerce order information, and answers follow-up questions through a conversational API.",
+    cardTech: ["Python", "LangChain", "LangGraph", "FastAPI"],
+    metric: "",
+    overview: "An AI-powered customer support system that helps customers resolve e-commerce-related inquiries through natural-language conversations. Built with LangGraph and FastAPI, the agent uses an LLM-driven workflow and Olist e-commerce data to retrieve customer, order, product, and shipping information while validating queries against its customer support scope.",
+    problem: "Customer support teams often handle repetitive inquiries about orders, products, and shipping status. Manually looking up information across multiple datasets can be time-consuming, while general-purpose LLMs may produce unsupported answers or respond to unrelated queries.",
+    approach: "The system uses LangGraph to orchestrate an agent-and-tools workflow. An LLM interprets customer inquiries and determines when to retrieve information through custom tools connected to the Olist dataset. Scope validation helps reject unrelated queries, while conversation state supports contextual follow-up questions. FastAPI exposes the agent as an API, and LangSmith provides tracing and observability.",
+    architecture: [
+      "Customer submits an inquiry through the API",
+      "Scope validation checks whether the query is relevant to customer support",
+      "LangGraph orchestrates the agent workflow",
+      "LLM interprets the inquiry and determines whether tools are needed",
+      "Custom tools retrieve relevant customer and order information from Olist datasets",
+      "Agent processes tool results and generates a natural-language response",
+      "Conversation state maintains context for follow-up questions",
+      "FastAPI returns the response to the client"
+    ],
+    keyFeatures: [
+      "AI-Powered Customer Support",
+      "Agentic Workflow with LangGraph",
+      "Customer and Order Information Retrieval",
+      "Tool Calling and Data Retrieval",
+      "Scope Validation",
+      "Conversational Follow-Up Support",
+      "REST API with FastAPI",
+      "LLM Tracing and Observability"
+    ],
+    technicalImplementation: "LangGraph orchestrates the agent and tool execution cycle, while LangChain provides LLM integration through OpenRouter-hosted GPT-4o-mini. Custom tools retrieve customer, order, product, and shipping-related information from Olist CSV datasets using Pandas. Scope validation handles out-of-scope inquiries, and conversation state enables contextual follow-up interactions. FastAPI exposes the workflow through REST endpoints, LangSmith supports tracing and monitoring, and Docker Compose simplifies containerized execution.",
+    challenges: "Designing a reliable agent workflow required handling tool execution, query scope validation, and conversational context. One important challenge was ensuring that the agent could distinguish supported customer service inquiries from unrelated questions while maintaining context across follow-up interactions.",
+    results: "Implemented a containerized customer support API with LangGraph-based agent orchestration, custom e-commerce data retrieval tools, scope validation, conversational follow-up support, and LangSmith observability. The application can be run locally or through Docker Compose.",
+    techStack: [
+      "Python",
+      "LangChain",
+      "LangGraph",
+      "OpenRouter",
+      "GPT-4o-mini",
+      "FastAPI",
+      "Pandas",
+      "Pydantic",
+      "LangSmith",
+      "Docker",
+      "Docker Compose"
+    ],
+    links: {
+      github: "https://github.com/naufalsutrisna/customer-support-agent",
+      demo: "",
+      publication: ""
+    }
+  },
+  {
     id: "ecommerce-agent",
     title: "E-Commerce Data Analyst Agent",
-    date: "May 2026 - Jun 2026",
+    date: "Apr 2026 - Jun 2026",
     type: "Individual",
     shortDescription: "AI agent that turns natural-language business questions into SQL, then returns executive summaries and insights, so you don't need to write SQL by hand.",
     cardTech: ["Python", "LangChain", "DuckDB", "Streamlit"],
@@ -176,177 +229,6 @@ const FEATURED_PROJECTS = [
     techStack: ["Python", "SQL", "XGBoost", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "FastAPI"],
     links: {
       github: "https://github.com/naufalsutrisna/Room-Pricing-Bukit-Vista",
-      demo: "",
-      publication: ""
-    }
-  }
-];
-
-const MORE_PROJECTS = [
-  {
-    id: "voice-assistant",
-    title: "Voice Assistant",
-    date: "Feb 2026 - Apr 2026",
-    type: "Individual",
-    shortDescription: "Real-time hands-free voice assistant combining speech-to-text, an LLM, and text-to-speech.",
-    cardTech: ["Python", "Faster-Whisper", "pyttsx3"],
-    metric: "",
-    overview: "An AI-powered Voice Assistant that enables real-time voice interactions with Large Language Models. The system captures user speech, transcribes it into text, processes the request through an LLM, and speaks the response back, providing a hands-free way to interact with an AI assistant.",
-    problem: "", // TODO
-    approach: "Microphone audio is captured continuously, transcribed locally with Faster-Whisper, sent as a prompt to an LLM through OpenRouter, and the reply is converted back to speech with pyttsx3 before the assistant starts listening again.",
-    architecture: [],
-    keyFeatures: [
-      "Real-Time Speech-to-Text (STT)",
-      "LLM-Powered Conversational AI",
-      "Text-to-Speech (TTS) Response Generation",
-      "Natural Voice-Based User Interaction",
-      "Hands-Free AI Interaction"
-    ],
-    technicalImplementation: "Runs as a continuous listen-respond loop in the terminal: SoundDevice/SoundFile capture audio, Faster-Whisper transcribes it, the text is sent to an LLM via OpenRouter, and pyttsx3 speaks the reply before the loop restarts.",
-    challenges: "", // TODO
-    results: "", // TODO
-    techStack: ["Python", "OpenRouter", "Faster-Whisper", "pyttsx3", "SoundDevice", "SoundFile", "NumPy", "SciPy"],
-    links: {
-      github: "https://github.com/naufalsutrisna/voice-assistant",
-      demo: "",
-      publication: ""
-    }
-  },
-  {
-    id: "abstract-similarity-chatbot",
-    title: "Abstract Similarity Chatbot",
-    date: "Oct 2024 - Dec 2024",
-    type: "Team",
-    shortDescription: "Helps researchers find semantically related papers using TF-IDF and cosine similarity search.",
-    cardTech: ["FastAPI", "Scikit-learn", "TF-IDF"],
-    metric: "",
-    overview: "An AI-powered Abstract Similarity Chatbot that helps researchers discover relevant academic studies through natural language queries. The system analyzes research abstracts, identifies semantically related publications, and returns the most relevant results based on similarity scores, reducing manual literature search effort.",
-    problem: "", // TODO
-    approach: "Research abstracts are vectorized with TF-IDF, and a user's query is compared against the abstract corpus using cosine similarity to surface the most semantically related papers.",
-    architecture: [],
-    keyFeatures: [
-      "Abstract Similarity Search",
-      "Natural Language Query Processing",
-      "Research Paper Ranking and Recommendation",
-      "TF-IDF-Based Text Representation",
-      "Cosine Similarity Matching"
-    ],
-    technicalImplementation: "Abstracts are cleaned and converted into a TF-IDF matrix with Scikit-learn; an incoming query is vectorized the same way and ranked against the matrix using cosine similarity, with the top match served through a FastAPI endpoint.",
-    challenges: "", // TODO
-    results: "", // TODO
-    techStack: ["Python", "JavaScript", "TF-IDF", "Cosine Similarity", "Scikit-learn", "Pandas", "FastAPI"],
-    links: {
-      github: "https://github.com/naufalsutrisna/Abstract-Similarity-Chatbot",
-      demo: "",
-      publication: ""
-    }
-  },
-  {
-    id: "bike-sharing-analysis",
-    title: "Bike Sharing Analysis",
-    date: "Feb 2024 - Mar 2024",
-    type: "Individual",
-    shortDescription: "Interactive dashboard exploring bike rental patterns and demand drivers in Washington D.C.",
-    cardTech: ["Pandas", "Streamlit", "Seaborn"],
-    metric: "",
-    overview: "An interactive bike-sharing analytics dashboard to explore rental patterns and factors influencing bike usage in Washington D.C. It lets users analyze trends across time, weather conditions, and seasonal variations through dynamic visualizations and automated data filtering.",
-    problem: "", // TODO
-    approach: "Raw ride-level data is cleaned and aggregated with Pandas, then exposed through a Streamlit dashboard with interactive date filters and charts covering hourly, seasonal, and weather-based rental patterns.",
-    architecture: [],
-    keyFeatures: [
-      "Interactive Data Analytics Dashboard",
-      "Dynamic Time-Based Filtering",
-      "Automated Data Cleaning and Processing",
-      "Streamlit-Based Data Exploration"
-    ],
-    technicalImplementation: "", // TODO
-    challenges: "", // TODO
-    results: "The dashboard surfaces citywide totals (3.29M total rentals across casual and registered riders) alongside hourly and seasonal breakdowns.",
-    techStack: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Streamlit"],
-    links: {
-      github: "https://github.com/naufalsutrisna/Bike-Sharing-Analysis",
-      demo: "https://naufalptrs-bike-sharing.streamlit.app/",
-      publication: ""
-    }
-  },
-  {
-    id: "papaya-ripeness-detection",
-    title: "Papaya Ripeness Detection",
-    date: "Sep 2023 - Dec 2023",
-    type: "Team",
-    shortDescription: "CNN-based fruit ripeness classifier reaching 96.63% accuracy, published as academic research.",
-    cardTech: ["TensorFlow", "CNN"],
-    metric: "96.63% accuracy",
-    overview: "A deep learning-based papaya ripeness detection system that automates fruit classification using visual characteristics and image data. The model analyzes skin color and other visual features to classify ripeness levels, supporting more efficient agricultural operations and inventory management.",
-    problem: "", // TODO
-    approach: "A convolutional neural network is trained directly on labeled papaya images across three ripeness classes (mature, partially mature, and unmature), learning skin color and texture cues instead of relying on hand-crafted rules.",
-    architecture: [],
-    keyFeatures: [
-      "Papaya Ripeness Classification",
-      "Deep Learning-Based Image Classification",
-      "Published Academic Research"
-    ],
-    technicalImplementation: "", // TODO
-    challenges: "", // TODO
-    results: "Achieved 96.63% classification accuracy across ripeness classes; published in JTIIK.",
-    techStack: ["Python", "TensorFlow", "Convolutional Neural Networks"],
-    links: {
-      github: "https://github.com/naufalsutrisna/Papaya-Ripeness-Detection-Using-CNN",
-      demo: "",
-      publication: "https://jtiik.ub.ac.id/index.php/jtiik/article/view/8119"
-    }
-  },
-  {
-    id: "grade-prediction",
-    title: "Grade Prediction",
-    date: "Sep 2023 - Dec 2023",
-    type: "Team",
-    shortDescription: "Predicts academic performance from Empatica E4 wearable electrodermal activity signals.",
-    cardTech: ["Flask", "Pandas", "Feature Engineering"],
-    metric: "100% prediction accuracy",
-    overview: "A machine learning-based grade prediction system that uses physiological data collected from the Empatica E4 wearable device to analyze academic performance. The system processes Electrodermal Activity (EDA) signals through feature engineering to identify patterns associated with student outcomes.",
-    problem: "", // TODO
-    approach: "EDA and heart-rate signals from the Empatica E4 are cleaned and turned into engineered features, which are then used to train a classification model that predicts grade outcomes from physiological patterns.",
-    architecture: [],
-    keyFeatures: [
-      "Grade Prediction Using Physiological Data",
-      "Electrodermal Activity (EDA) Signal Analysis",
-      "Wearable Sensor Data Processing",
-      "Feature Engineering and Extraction"
-    ],
-    technicalImplementation: "The trained model is served through a Flask web app where a user submits EDA/heart-rate feature values and receives a predicted grade outcome.",
-    challenges: "", // TODO
-    results: "Achieved 100% prediction accuracy on the evaluated dataset.",
-    techStack: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Flask"],
-    links: {
-      github: "https://github.com/naufalsutrisna/Grade-Prediction-Using-Empatica-E4",
-      demo: "https://naufalputra.pythonanywhere.com/",
-      publication: ""
-    }
-  },
-  {
-    id: "mcp-weather-server",
-    title: "MCP Weather Server",
-    date: "Jul 2026 - Present",
-    type: "Individual",
-    shortDescription: "A weather MCP server exposing geocoding and forecast data as tools/resources for AI applications.",
-    cardTech: ["FastMCP", "Model Context Protocol", "Open-Meteo API"],
-    metric: "",
-    overview: "A weather MCP server built with FastMCP that lets AI applications access weather capabilities through the Model Context Protocol, using Open-Meteo's geocoding and weather APIs to retrieve city-based weather information and forecasts.",
-    problem: "", // TODO
-    approach: "Open-Meteo's geocoding and forecast APIs are wrapped behind the Model Context Protocol, exposed as MCP tools, resources, and resource templates that any MCP-compatible AI client can call directly.",
-    architecture: [],
-    keyFeatures: [
-      "City-Based Weather Lookup via Open-Meteo",
-      "MCP Tools, Resources, and Resource Templates",
-      "Standardized Interface for AI Applications"
-    ],
-    technicalImplementation: "", // TODO
-    challenges: "", // TODO
-    results: "", // TODO
-    techStack: ["Python", "FastMCP", "Model Context Protocol", "Open-Meteo API"],
-    links: {
-      github: "",
       demo: "",
       publication: ""
     }
