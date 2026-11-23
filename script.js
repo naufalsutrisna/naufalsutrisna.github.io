@@ -19,31 +19,14 @@ document.getElementById('year').textContent = new Date().getFullYear();
 })();
 
 // ============================================
-// Resume & Portfolio document links (resume.html)
-// See RESUME_URL / PORTFOLIO_URL in projects-data.js
+// Resume links (nav + hero) -> open RESUME_URL directly
+// See RESUME_URL in projects-data.js
 // ============================================
-(function setDocumentLinks() {
-  const isPlaceholder = (url) => !url || url.startsWith('PASTE_YOUR_');
-
-  const cvView = document.getElementById('cvView');
-
-  if (
-    cvView &&
-    typeof RESUME_URL !== 'undefined' &&
-    !isPlaceholder(RESUME_URL)
-  ) {
-    cvView.href = RESUME_URL;
-  }
-
-  const portfolioView = document.getElementById('portfolioView');
-
-  if (
-    portfolioView &&
-    typeof PORTFOLIO_URL !== 'undefined' &&
-    !isPlaceholder(PORTFOLIO_URL)
-  ) {
-    portfolioView.href = PORTFOLIO_URL;
-  }
+(function setResumeLinks() {
+  if (typeof RESUME_URL === 'undefined' || !RESUME_URL || RESUME_URL.startsWith('PASTE_YOUR_')) return;
+  document.querySelectorAll('[data-resume]').forEach(a => {
+    a.href = RESUME_URL;
+  });
 })();
 
 // ============================================
@@ -57,13 +40,10 @@ function renderFeaturedProjects() {
     <article class="project-card">
       <div class="project-card__top">
         <h3>${p.title}</h3>
-        <span class="project-card__type">${p.type}</span>
       </div>
       <p class="project-card__desc">${p.shortDescription}</p>
       <div class="project-card__actions">
-        <button class="case-study-btn" data-project="${p.id}">Case Study →</button>
-        ${p.links.github ? `<a href="${p.links.github}" target="_blank" rel="noopener">GitHub ↗</a>` : ''}
-        ${p.links.demo ? `<a href="${p.links.demo}" target="_blank" rel="noopener">Demo ↗</a>` : ''}
+        <button class="case-study-btn" data-project="${p.id}">View Project →</button>
       </div>
     </article>
   `).join('');
@@ -88,30 +68,31 @@ function openCaseStudy(id) {
   const p = FEATURED_PROJECTS.find(proj => proj.id === id);
   if (!p) return;
 
+  const paras = (arr) => `<p>${(arr || []).join('<br><br>')}</p>`;
+
   let html = `
-    <p class="modal-meta">${p.type} · ${p.date}</p>
+    <p class="modal-meta">${p.date}</p>
     <h3 class="modal-title" id="modalTitle">${p.title}</h3>
     <p class="modal-sub">${p.shortDescription}</p>
   `;
 
-  html += section('Overview', `<p>${p.overview}</p>`);
+  if (p.metric) html += section('Outcome', `<p class="modal-result">${p.metric}</p>`);
 
-  if (p.problem) html += section('Problem', `<p>${p.problem}</p>`);
-  if (p.approach) html += section('Approach', `<p>${p.approach}</p>`);
-
-  if (p.architecture && p.architecture.length) {
-    html += `<div class="modal-section modal-section--arch"><h4>Architecture</h4><ol>${p.architecture.map(step => `<li>${step}</li>`).join('')}</ol></div>`;
+  if (p.techStack && p.techStack.length) {
+    html += section('Tech Stack', `<div class="tags">${p.techStack.map(t => `<span class="tag">${t}</span>`).join('')}</div>`);
   }
 
-  if (p.keyFeatures && p.keyFeatures.length) {
-    html += section('Key Features', `<ul>${p.keyFeatures.map(f => `<li>${f}</li>`).join('')}</ul>`);
+  if (p.problem && p.problem.length) html += section('The Problem', paras(p.problem));
+
+  if ((p.built && p.built.length) || p.builtIntro) {
+    const intro = p.builtIntro ? `<p>${p.builtIntro}</p><br>` : '';
+    const items = (p.built && p.built.length)
+      ? `<ul>${p.built.map(b => `<li><strong>${b.lead}</strong> ${b.text}</li>`).join('')}</ul>`
+      : '';
+    html += section('What I Built', intro + items);
   }
 
-  if (p.technicalImplementation) html += section('Technical Implementation', `<p>${p.technicalImplementation}</p>`);
-  if (p.challenges) html += section('Challenges', `<p>${p.challenges}</p>`);
-  if (p.results) html += section('Results', `<p class="modal-result">${p.results}</p>`);
-
-  html += section('Tech Stack', `<div class="tags">${p.techStack.map(t => `<span class="tag">${t}</span>`).join('')}</div>`);
+  if (p.result && p.result.length) html += section('Result', paras(p.result));
 
   const links = [];
   if (p.links.github) links.push(`<a href="${p.links.github}" target="_blank" rel="noopener" class="btn btn--ghost">GitHub ↗</a>`);
@@ -119,8 +100,64 @@ function openCaseStudy(id) {
   if (p.links.publication) links.push(`<a href="${p.links.publication}" target="_blank" rel="noopener" class="btn btn--ghost">Publication ↗</a>`);
   if (links.length) html += section('Links', `<div class="modal-links">${links.join('')}</div>`);
 
+  showInModal(html);
+}
+
+function showInModal(html) {
   modalContent.innerHTML = html;
   caseStudyModal.showModal();
+}
+
+// ============================================
+// Research (cards + pop-up)
+// ============================================
+function renderResearch() {
+  const grid = document.getElementById('researchGrid');
+  if (!grid || typeof RESEARCH === 'undefined') return;
+
+  grid.innerHTML = RESEARCH.map(r => `
+    <article class="project-card">
+      <div class="project-card__top">
+        <h3>${r.title}</h3>
+      </div>
+      <p class="project-card__meta">${r.venueShort} · ${r.date}</p>
+      <p class="project-card__desc">${r.shortDescription}</p>
+      <div class="project-card__actions">
+        <button class="case-study-btn" data-research="${r.id}">View Research →</button>
+      </div>
+    </article>
+  `).join('');
+
+  grid.querySelectorAll('[data-research]').forEach(btn => {
+    btn.addEventListener('click', () => openResearch(btn.dataset.research));
+  });
+}
+
+function openResearch(id) {
+  const r = RESEARCH.find(item => item.id === id);
+  if (!r) return;
+
+  const paras = (arr) => `<p>${(arr || []).join('<br><br>')}</p>`;
+
+  let html = `
+    <p class="modal-meta">Research · ${r.date}</p>
+    <h3 class="modal-title" id="modalTitle">${r.title}</h3>
+    <p class="modal-sub">${r.venue}</p>
+  `;
+
+  if (r.metric) html += section('Outcome', `<p class="modal-result">${r.metric}</p>`);
+  if (r.problem && r.problem.length) html += section('The Problem', paras(r.problem));
+  if (r.approach && r.approach.length) {
+    html += section('Approach', `<ul>${r.approach.map(a => `<li><strong>${a.lead}</strong> ${a.text}</li>`).join('')}</ul>`);
+  }
+  if (r.result && r.result.length) html += section('Result', paras(r.result));
+
+  const links = [];
+  if (r.links.paper) links.push(`<a href="${r.links.paper}" target="_blank" rel="noopener" class="btn btn--ghost">Paper ↗</a>`);
+  if (r.links.github) links.push(`<a href="${r.links.github}" target="_blank" rel="noopener" class="btn btn--ghost">GitHub ↗</a>`);
+  if (links.length) html += section('Links', `<div class="modal-links">${links.join('')}</div>`);
+
+  showInModal(html);
 }
 
 if (modalClose) {
@@ -135,6 +172,7 @@ if (caseStudyModal) {
 }
 
 renderFeaturedProjects();
+renderResearch();
 
 // ============================================
 // Nav scroll state + active link

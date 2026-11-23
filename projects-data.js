@@ -1,236 +1,247 @@
 /**
- * RESUME & PORTFOLIO DOCUMENTS
+ * RESUME LINK
  * ---------------------------------------------------------
- * Paste your Google Drive share links below.
- * In Google Drive: right-click the file -> Share -> "Anyone with the link"
- * -> Copy link, then paste it here between the quotes.
- * The "View" button opens this link directly. The "Download" button is
- * derived automatically from it (see driveDownloadUrl in script.js).
+ * Every "Resume" link on the site (nav + hero button) opens this URL
+ * in a new tab. In Google Drive: right-click the file -> Share ->
+ * "Anyone with the link" -> Copy link, then paste it below.
  * ---------------------------------------------------------
  */
 const RESUME_URL = "https://drive.google.com/drive/folders/1Bxk1rD9UgqiMxLXPP1_EdBFnv7wupz6F?usp=sharing";
-const PORTFOLIO_URL = "https://drive.google.com/drive/folders/15vjme4nQXJccRmWjtB4EdARrkdYv58s1?usp=sharing";
 
 /**
  * PROJECT DATA
  * ---------------------------------------------------------
- * Single source of truth for Featured Projects + case studies.
+ * Single source of truth for the project cards + detail pop-up.
  * Only fill in fields with real, verifiable information.
- * Leave a field as an empty string "" or empty array [] if the
- * information isn't available yet; empty sections are
- * automatically hidden in the case study modal (see script.js).
+ * Any empty field ("" or []) is simply hidden in the pop-up.
  *
- * To add/edit a project: edit this file only. No HTML/CSS changes needed.
+ * Fields:
+ *   title, shortDescription  -> card + pop-up header
+ *   date                     -> shown under the title
+ *   metric                   -> shown as "Outcome" (a real number only)
+ *   techStack                -> tag list
+ *   problem                  -> array of paragraphs
+ *   builtIntro               -> one-line summary of what exists
+ *   built                    -> [{ lead, text }] what you actually built
+ *   result                   -> array of paragraphs (real results only)
+ *   links                    -> github / demo / publication
  * ---------------------------------------------------------
  */
 
 const FEATURED_PROJECTS = [
   {
+    id: "ihsg-market-insight",
+    title: "IHSG Market Insight",
+    shortDescription: "Automated Indonesian stock market reporting system that collects market data, analyzes stock performance, and delivers a structured daily closing insight to Discord.",
+    date: "Nov 2026 - Present",
+    metric: "",
+    techStack: ["Python", "LangChain", "n8n", "FastAPI", "yfinance", "Docker", "Discord Webhooks"],
+    problem: [
+      "Keeping up with the Indonesian market at the end of each trading day means pulling prices, checking how stocks performed, and writing it all up by hand. That is repetitive work, and it is easy to skip on a busy day."
+    ],
+    builtIntro: "A reporting service built with FastAPI, plus an n8n workflow that schedules and delivers the report.",
+    built: [
+      { lead: "Market data collection.", text: "Market data is retrieved from Yahoo Finance through yfinance and used to analyze stock performance." },
+      { lead: "A reporting API.", text: "FastAPI exposes endpoints for a health check, an IHSG market summary, a complete closing market insight, and a Discord-formatted version of that report." },
+      { lead: "Scheduled delivery.", text: "An n8n workflow, running locally in Docker, calls the report endpoint every weekday at 17:00 WIB." },
+      { lead: "Discord notifications.", text: "The workflow posts the formatted report to a Discord channel through a webhook." }
+    ],
+    result: [
+      "A working pipeline that sends the closing market report to Discord every weekday at 17:00 WIB, as long as the API and the n8n container are running. The project is still in progress."
+    ],
+    links: {
+      github: "https://github.com/naufalsutrisna/ihsg-market-insight",
+      demo: ""
+    }
+  },
+  {
     id: "customer-support-agent",
     title: "Agentic Customer Support System",
-    date: "Sep 2026 - Nov 2026",
-    type: "Individual",
     shortDescription: "An AI-powered customer support agent that handles customer inquiries, retrieves e-commerce order information, and answers follow-up questions through a conversational API.",
-    cardTech: ["Python", "LangChain", "LangGraph", "FastAPI"],
+    date: "Sep 2026 - Nov 2026",
     metric: "",
-    overview: "An AI-powered customer support system that helps customers resolve e-commerce-related inquiries through natural-language conversations. Built with LangGraph and FastAPI, the agent uses an LLM-driven workflow and Olist e-commerce data to retrieve customer, order, product, and shipping information while validating queries against its customer support scope.",
-    problem: "Customer support teams often handle repetitive inquiries about orders, products, and shipping status. Manually looking up information across multiple datasets can be time-consuming, while general-purpose LLMs may produce unsupported answers or respond to unrelated queries.",
-    approach: "The system uses LangGraph to orchestrate an agent-and-tools workflow. An LLM interprets customer inquiries and determines when to retrieve information through custom tools connected to the Olist dataset. Scope validation helps reject unrelated queries, while conversation state supports contextual follow-up questions. FastAPI exposes the agent as an API, and LangSmith provides tracing and observability.",
-    architecture: [
-      "Customer submits an inquiry through the API",
-      "Scope validation checks whether the query is relevant to customer support",
-      "LangGraph orchestrates the agent workflow",
-      "LLM interprets the inquiry and determines whether tools are needed",
-      "Custom tools retrieve relevant customer and order information from Olist datasets",
-      "Agent processes tool results and generates a natural-language response",
-      "Conversation state maintains context for follow-up questions",
-      "FastAPI returns the response to the client"
+    techStack: ["Python", "LangChain", "LangGraph", "OpenRouter", "GPT-4o-mini", "FastAPI", "Pandas", "Pydantic", "LangSmith", "Docker", "Docker Compose"],
+    problem: [
+      "Support teams answer the same questions over and over: where is my order, what is the status of this shipment, what does this product cost. Answering them means looking the same information up across several datasets by hand.",
+      "A general-purpose LLM does not solve this on its own. Left alone, it can produce answers that no data supports, and it will happily respond to questions that have nothing to do with customer support. What was needed was an assistant that answers from real order data and knows what it is not supposed to answer."
     ],
-    keyFeatures: [
-      "AI-Powered Customer Support",
-      "Agentic Workflow with LangGraph",
-      "Customer and Order Information Retrieval",
-      "Tool Calling and Data Retrieval",
-      "Scope Validation",
-      "Conversational Follow-Up Support",
-      "REST API with FastAPI",
-      "LLM Tracing and Observability"
+    builtIntro: "A conversational customer support agent, exposed as a REST API and working over the Olist e-commerce dataset.",
+    built: [
+      { lead: "An agent loop in LangGraph.", text: "LangGraph orchestrates the agent and tool execution cycle. The LLM (GPT-4o-mini through OpenRouter, integrated with LangChain) reads each inquiry and decides whether it needs to fetch data before answering." },
+      { lead: "Custom retrieval tools.", text: "Tools look up customer, order, product, and shipping information from the Olist CSV datasets using Pandas, so answers come from the data rather than from the model's guess." },
+      { lead: "Scope validation.", text: "Each query is checked against the customer support scope, so unrelated questions are turned away instead of answered." },
+      { lead: "Conversation state.", text: "Context is kept across turns, so follow-up questions are understood in light of what was already asked." },
+      { lead: "API, tracing, and packaging.", text: "FastAPI exposes the workflow through REST endpoints, LangSmith traces each run for observability, and Docker Compose handles containerized execution." }
     ],
-    technicalImplementation: "LangGraph orchestrates the agent and tool execution cycle, while LangChain provides LLM integration through OpenRouter-hosted GPT-4o-mini. Custom tools retrieve customer, order, product, and shipping-related information from Olist CSV datasets using Pandas. Scope validation handles out-of-scope inquiries, and conversation state enables contextual follow-up interactions. FastAPI exposes the workflow through REST endpoints, LangSmith supports tracing and monitoring, and Docker Compose simplifies containerized execution.",
-    challenges: "Designing a reliable agent workflow required handling tool execution, query scope validation, and conversational context. One important challenge was ensuring that the agent could distinguish supported customer service inquiries from unrelated questions while maintaining context across follow-up interactions.",
-    results: "Implemented a containerized customer support API with LangGraph-based agent orchestration, custom e-commerce data retrieval tools, scope validation, conversational follow-up support, and LangSmith observability. The application can be run locally or through Docker Compose.",
-    techStack: [
-      "Python",
-      "LangChain",
-      "LangGraph",
-      "OpenRouter",
-      "GPT-4o-mini",
-      "FastAPI",
-      "Pandas",
-      "Pydantic",
-      "LangSmith",
-      "Docker",
-      "Docker Compose"
+    result: [
+      "A containerized customer support API with LangGraph-based orchestration, custom e-commerce data retrieval tools, scope validation, conversational follow-up support, and LangSmith observability. It runs locally or through Docker Compose."
     ],
     links: {
       github: "https://github.com/naufalsutrisna/customer-support-agent",
-      demo: "",
-      publication: ""
+      demo: ""
     }
   },
   {
     id: "ecommerce-agent",
     title: "E-Commerce Data Analyst Agent",
-    date: "Apr 2026 - Jun 2026",
-    type: "Individual",
     shortDescription: "AI agent that turns natural-language business questions into SQL, then returns executive summaries and insights, so you don't need to write SQL by hand.",
-    cardTech: ["Python", "LangChain", "DuckDB", "Streamlit"],
-    metric: "", // TODO: add a quantified result if available (e.g. query accuracy, adoption)
-    overview: "An AI-powered E-Commerce Data Analyst Agent that lets users analyze business performance through natural language. The system translates questions into SQL, retrieves data, and generates business insights and executive summaries through a conversational interface, removing the need for manual SQL querying.",
-    problem: "", // TODO
-    approach: "User questions are validated, converted into SQL by an LLM-driven LangChain pipeline, executed against a DuckDB engine, and the resulting data is summarized back into plain-language insights.",
-    architecture: [
-      "User submits a question in natural language",
-      "Question validation",
-      "SQL generation (LLM + LangChain)",
-      "Query execution on DuckDB",
-      "Insight generation from query results",
-      "Executive summary returned to the user"
-    ],
-    keyFeatures: [
-      "Natural Language to SQL Generation",
-      "Executive Summary Generation",
-      "Conversational Business Analytics",
-      "Multi-Table Data Querying",
-      "Interactive Web Interface"
-    ],
-    technicalImplementation: "Streamlit handles the conversational front end; LangChain orchestrates the natural-language-to-SQL pipeline via OpenRouter-hosted LLMs; DuckDB serves as an embedded analytical query engine over the Olist e-commerce dataset; Pandas/NumPy handle post-query processing.",
-    challenges: "", // TODO
-    results: "", // TODO: add measurable outcome if available
+    date: "Apr 2026 - Jun 2026",
+    metric: "", // TODO: add a quantified result if available (e.g. query accuracy)
     techStack: ["Python", "SQL", "LangChain", "OpenRouter", "Pandas", "NumPy", "DuckDB", "Streamlit", "Docker", "Jupyter Notebook"],
+    problem: [
+      "Answering a business question from e-commerce data normally means writing SQL across several tables first. That puts analysis out of reach for anyone who cannot, or does not want to, write queries, and turns every simple question into a request for someone who can."
+    ],
+    builtIntro: "A conversational data analyst agent that takes a business question in plain language and returns a data-backed summary.",
+    built: [
+      { lead: "Question validation.", text: "Every question is validated before any query is generated or run." },
+      { lead: "Natural language to SQL.", text: "An LLM-driven LangChain pipeline, using OpenRouter-hosted models, translates the question into SQL." },
+      { lead: "An embedded query engine.", text: "Queries run on DuckDB over the multi-table Olist e-commerce dataset." },
+      { lead: "From rows to insights.", text: "Query results are processed with Pandas and NumPy, then turned into plain-language insights and an executive summary." },
+      { lead: "A chat interface.", text: "A Streamlit front end lets users ask follow-up business questions conversationally." }
+    ],
+    result: [], // TODO: add a real result if available
     links: {
       github: "https://github.com/naufalsutrisna/ecommerce-data-analyst-agent",
-      demo: "",
-      publication: ""
+      demo: ""
     }
   },
   {
     id: "mlops-pipeline",
     title: "MLOps Project for Heart Attack Detection",
-    date: "Oct 2024 - Dec 2024",
-    type: "Team",
     shortDescription: "End-to-end MLOps pipeline automating training, deployment, and monitoring of a heart attack detection model in production.",
-    cardTech: ["Docker", "MLflow", "Grafana", "PostgreSQL"],
+    date: "Oct 2024 - Dec 2024",
     metric: "0.852 model accuracy (live-tracked)",
-    overview: "An end-to-end MLOps pipeline to automate training, deployment, monitoring, and management of machine learning models in production. It streamlines the ML lifecycle through containerization, experiment tracking, model versioning, artifact storage, and real-time monitoring.",
-    problem: "", // TODO
-    approach: "The pipeline is fully containerized, with each stage, training, experiment tracking, artifact storage, and monitoring, running as its own service orchestrated with Docker Compose. This keeps the workflow reproducible from experimentation to production.",
-    architecture: [
-      "Jupyter environment for model experimentation",
-      "MLflow tracking server for experiment logging & model versioning",
-      "MinIO for artifact/object storage",
-      "PostgreSQL as the MLflow backend store",
-      "Grafana dashboard for real-time model monitoring"
-    ],
-    keyFeatures: [
-      "Automated Model Training and Deployment",
-      "Experiment Tracking and Model Versioning",
-      "Containerized Deployment with Docker",
-      "Real-Time Monitoring and Observability"
-    ],
-    technicalImplementation: "Training runs are logged to MLflow (parameters, metrics, and model artifacts), with MinIO backing artifact storage and PostgreSQL as the tracking backend. A Grafana dashboard visualizes live model accuracy and loss for ongoing monitoring.",
-    challenges: "", // TODO
-    results: "Achieved a tracked model accuracy of 0.852 (loss 0.123) on the monitoring dashboard.",
     techStack: ["Python", "Docker", "MLflow", "Grafana", "MinIO", "PostgreSQL", "Pandas", "NumPy", "Scikit-learn"],
+    problem: [
+      "A model that lives in a notebook is hard to reproduce, hard to track, and hard to keep an eye on once it is deployed. Without experiment logging, versioning, and monitoring, it is difficult to say which run produced which model, or how that model is performing right now."
+    ],
+    builtIntro: "A fully containerized MLOps pipeline for a heart attack detection model, with each stage running as its own service under Docker Compose.",
+    built: [
+      { lead: "Experimentation.", text: "A Jupyter environment for model development and training." },
+      { lead: "Experiment tracking and versioning.", text: "An MLflow tracking server logs parameters, metrics, and model artifacts for every run, and versions the resulting models." },
+      { lead: "Artifact and metadata storage.", text: "MinIO stores model artifacts as objects, and PostgreSQL serves as the MLflow backend store." },
+      { lead: "Live monitoring.", text: "A Grafana dashboard visualizes model accuracy and loss in real time." },
+      { lead: "Reproducibility.", text: "Because every stage is its own container, the workflow stays reproducible from experimentation through to production." }
+    ],
+    result: [
+      "The model reached a tracked accuracy of 0.852 (loss 0.123), visible live on the monitoring dashboard."
+    ],
     links: {
       github: "https://github.com/naufalsutrisna/MLOps-Heart-Attack-Detection",
-      demo: "",
-      publication: ""
+      demo: ""
     }
   },
   {
     id: "shopping-assistant",
     title: "AI-Powered Shopping Assistant Chatbot",
-    date: "Feb 2025 - Apr 2025",
-    type: "Individual",
     shortDescription: "Conversational product-discovery assistant that understands budget and preferences to recommend relevant products via RAG.",
-    cardTech: ["FAISS", "Sentence-Transformers", "RAG", "Streamlit"],
+    date: "Feb 2025 - Apr 2025",
     metric: "",
-    overview: "An AI-powered Shopping Assistant Chatbot that helps users discover products through natural language. It understands user preferences, budget constraints, and product requirements to deliver relevant recommendations and contextual product information, replacing manual browsing and keyword search.",
-    problem: "", // TODO
-    approach: "Product data is embedded with Sentence-Transformers and indexed with FAISS for similarity search. A retrieval-augmented generation pipeline retrieves the most relevant products for a query and an LLM (via OpenRouter) generates a natural-language recommendation grounded in that retrieved data.",
-    architecture: [],
-    keyFeatures: [
-      "Natural Language Product Search",
-      "Personalized Product Recommendations",
-      "Budget-Based Product Filtering",
-      "Retrieval-Augmented Generation (RAG)"
-    ],
-    technicalImplementation: "Sentence-Transformers generate product embeddings, FAISS performs nearest-neighbor retrieval, and OpenRouter-hosted LLMs synthesize the final recommendation text, served through a Streamlit interface.",
-    challenges: "", // TODO
-    results: "", // TODO
     techStack: ["Python", "Sentence-Transformers", "FAISS", "OpenRouter", "Retrieval-Augmented Generation", "Streamlit"],
+    problem: [
+      "Manual browsing and keyword search break down when a shopper describes a need in natural terms, such as a budget and a few requirements, instead of naming a product."
+    ],
+    builtIntro: "A shopping assistant chatbot built on retrieval-augmented generation (RAG).",
+    built: [
+      { lead: "Embedding and indexing.", text: "Product data is embedded with Sentence-Transformers and indexed in FAISS for similarity search." },
+      { lead: "Retrieval.", text: "For each query, the pipeline retrieves the most relevant products, including filtering by the shopper's budget." },
+      { lead: "Grounded recommendations.", text: "An OpenRouter-hosted LLM writes the recommendation from the retrieved products, so the answer stays tied to real catalog data." },
+      { lead: "A chat interface.", text: "A Streamlit front end handles the conversation." }
+    ],
+    result: [], // TODO: add a real result if available
     links: {
       github: "https://github.com/naufalsutrisna/Shopping-Assistant-Chatbot",
-      demo: "",
-      publication: ""
-    }
-  },
-  {
-    id: "alzheimer-classification",
-    title: "Alzheimer Disease Classification",
-    date: "Aug 2024 - Dec 2024",
-    type: "Individual",
-    shortDescription: "Deep learning model classifying Alzheimer's disease stages from MRI scans, published as academic research.",
-    cardTech: ["TensorFlow", "VGG-19", "CLAHE", "OpenCV"],
-    metric: "93.91% F1-score",
-    overview: "A deep learning model for Alzheimer's disease classification using MRI scans. The system combines CLAHE image enhancement with transfer learning to improve feature extraction and classification performance across multiple disease stages.",
-    problem: "", // TODO
-    approach: "MRI scans are preprocessed with CLAHE (Contrast Limited Adaptive Histogram Equalization) to improve visibility of relevant structures, then passed through a pretrained VGG-19 backbone with a custom classification head, fine-tuned for four-class MRI classification.",
-    architecture: [],
-    keyFeatures: [
-      "Image Enhancement using CLAHE",
-      "Transfer Learning with Pretrained VGG-19",
-      "Multi-Class Medical Image Classification",
-      "Deep Learning-Based Feature Extraction",
-      "Published Academic Research"
-    ],
-    technicalImplementation: "A frozen VGG-19 convolutional base (pretrained on ImageNet) feeds a custom dense classification head (256 to 128 to 4 units) for four-class MRI classification, totaling around 26.5M parameters, of which 6.5M are trainable.",
-    challenges: "", // TODO
-    results: "Achieved a 93.91% F1-score across four Alzheimer's severity classes; published in JPTIIK.",
-    techStack: ["Python", "TensorFlow", "VGG-19", "OpenCV", "CLAHE"],
-    links: {
-      github: "https://github.com/naufalsutrisna/Alzheimer-Disease-Classification",
-      demo: "",
-      publication: "https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/14719"
+      demo: ""
     }
   },
   {
     id: "dynamic-room-pricing",
     title: "Dynamic Room Pricing",
-    date: "May 2024 - Jun 2024",
-    type: "Team",
     shortDescription: "Led development of a machine learning pricing model that adapts room rates to market trends and demand for a hospitality platform.",
-    cardTech: ["XGBoost", "TensorFlow", "FastAPI", "SQL"],
+    date: "May 2024 - Jun 2024",
     metric: "MAE of 59K (target: <100K)",
-    overview: "Led the development of a dynamic room pricing model to optimize revenue in the hospitality industry by adapting room prices to market trends and demand fluctuations. The system analyzes historical booking data and key pricing factors to generate data-driven pricing recommendations.",
-    problem: "", // TODO
-    approach: "Historical booking and pricing data were engineered into model-ready features, then used to train and compare regression models (XGBoost and a TensorFlow neural network) to predict optimal room prices against real market demand signals.",
-    architecture: [],
-    keyFeatures: [
-      "Dynamic Room Price Prediction",
-      "Revenue Optimization through Machine Learning",
-      "Demand and Market Trend Analysis",
-      "Feature Engineering and Data Preprocessing"
-    ],
-    technicalImplementation: "The trained model is served through a FastAPI endpoint that accepts a property, room, and stay dates, and returns both the current price and the model's predicted price for that booking window.",
-    challenges: "", // TODO
-    results: "Final model achieved a Mean Absolute Error (MAE) of 59K on testing data, surpassing the project's target of keeping MAE below 100K.",
     techStack: ["Python", "SQL", "XGBoost", "TensorFlow", "Scikit-learn", "Pandas", "NumPy", "FastAPI"],
+    problem: [
+      "Fixed room rates do not follow market trends or demand swings. A hospitality platform can end up priced too low when demand is high and too high when it is weak, which costs revenue either way."
+    ],
+    builtIntro: "A machine learning pricing model that recommends room prices from historical booking data and demand signals.",
+    built: [
+      { lead: "Feature engineering.", text: "Historical booking and pricing data were turned into model-ready features." },
+      { lead: "Model comparison.", text: "Regression models, XGBoost and a TensorFlow neural network, were trained and compared on predicting room price." },
+      { lead: "A prediction endpoint.", text: "The trained model is served through FastAPI. Given a property, room, and stay dates, it returns both the current price and the model's predicted price for that booking window." }
+    ],
+    result: [
+      "The final model reached a Mean Absolute Error (MAE) of 59K on test data, beating the project's target of keeping MAE below 100K."
+    ],
     links: {
       github: "https://github.com/naufalsutrisna/Room-Pricing-Bukit-Vista",
-      demo: "",
-      publication: ""
+      demo: ""
+    }
+  }
+];
+
+/**
+ * RESEARCH DATA
+ * ---------------------------------------------------------
+ * Published papers shown in the "Research" section.
+ * Same rules as projects: only real, verifiable info. Any empty
+ * field ("" or []) is hidden in the pop-up.
+ *
+ * Fields:
+ *   title, venue, venueShort, date, shortDescription
+ *   metric   -> shown as "Outcome"
+ *   problem  -> array of paragraphs
+ *   approach -> [{ lead, text }]
+ *   result   -> array of paragraphs
+ *   links    -> paper / github
+ * ---------------------------------------------------------
+ */
+const RESEARCH = [
+  {
+    id: "alzheimer-paper",
+    title: "Klasifikasi Penyakit Alzheimer Pada Citra MRI Menggunakan Pretrained VGG-19 dan Pengolahan Citra CLAHE",
+    venue: "Jurnal Pengembangan Teknologi Informasi dan Ilmu Komputer (JPTIIK)",
+    venueShort: "JPTIIK",
+    date: "Jan 2025",
+    shortDescription: "Deep learning classification of Alzheimer's disease stages from MRI scans, using a pretrained VGG-19 and CLAHE image enhancement.",
+    metric: "93.91% F1-score",
+    problem: [
+      "Telling Alzheimer's disease stages apart from MRI scans is difficult, and low contrast makes the relevant structures harder for a model to pick up. The goal was a classifier that could separate four severity classes reliably."
+    ],
+    approach: [
+      { lead: "Image enhancement.", text: "Scans are preprocessed with CLAHE (Contrast Limited Adaptive Histogram Equalization) to make relevant structures easier to see." },
+      { lead: "Transfer learning.", text: "A frozen VGG-19 convolutional base, pretrained on ImageNet, does the feature extraction." },
+      { lead: "A custom classification head.", text: "Dense layers (256, 128, then 4 units) sit on top for four-class classification." }
+    ],
+    result: [
+      "The model reached a 93.91% F1-score across the four Alzheimer's severity classes, and the work was published in JPTIIK."
+    ],
+    links: {
+      paper: "https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/14719",
+      github: "https://github.com/naufalsutrisna/Alzheimer-Disease-Classification"
+    }
+  },
+  {
+    id: "papaya-paper",
+    title: "Deteksi Tingkat Kematangan Buah Pepaya Menggunakan Model Convolutional Neural Network",
+    venue: "Jurnal Teknologi Informasi dan Ilmu Komputer (JTIIK)",
+    venueShort: "JTIIK",
+    date: "Jul 2024",
+    shortDescription: "A Convolutional Neural Network that classifies papaya fruit ripeness from skin color and other visual features.",
+    metric: "96.63% accuracy",
+    problem: [
+      "Papaya ripeness shows in the texture and color of the skin. Detecting it automatically matters for agriculture and for managing food inventory."
+    ],
+    approach: [
+      { lead: "Dataset.", text: "A dataset of papaya images covering different ripeness levels." },
+      { lead: "CNN classifier.", text: "A Convolutional Neural Network trained to classify ripeness from skin color and other visual features." }
+    ],
+    result: [
+      "The model identified papaya ripeness with 96.63% accuracy."
+    ],
+    links: {
+      paper: "https://doi.org/10.25126/jtiik.938119",
+      github: "" // TODO: add the repository link if there is one
     }
   }
 ];
